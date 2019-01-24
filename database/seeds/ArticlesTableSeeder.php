@@ -19,8 +19,12 @@ class ArticlesTableSeeder extends Seeder
     {
         factory(Article::class, 200)->create()->each(function ($article) {
             $faker=new Faker();
-            $article->categories()->save(factory(Category::class,3)->make());
-            $article->tags()->save(factory(Tag::class,5)->make());
+
+            for ($i=0; $i <3 ; $i++) { 
+               $article->categories()->save(factory(Category::class)->make());
+               $article->tags()->save(factory(Tag::class)->make());
+            }
+            
         });
     }
 }

@@ -17,12 +17,18 @@ class ArticlesTableSeeder extends Seeder
 
     public function run()
     {
-        factory(Article::class, 200)->create()->each(function ($article) {
+        factory(Article::class, 1000)->create()->each(function ($article) {
             $faker=new Faker();
+            $catCount=$faker->numberBetween(1,4);
+            $tagCount=$faker->numberBetween(1,10);
+            for ($i=0; $i <$catCount; $i++) {
+                $catId=$faker->numberBetween(1,Category::count());
+                $article->categories()->save(Category::where('id',$catId)->get()->make());
+            }
 
-            for ($i=0; $i <3 ; $i++) { 
-               $article->categories()->save(factory(Category::class)->make());
-               $article->tags()->save(factory(Tag::class)->make());
+            for ($i=0; $i <$tagCount; $i++) {
+                $tagId=$faker->numberBetween(1,Tag::count());
+                $article->tags()->save(Tag::where('id',$tagId)->get()->make());
             }
             
         });

@@ -5,6 +5,6 @@ use App\Models\Tag;
 
 $factory->define(Tag::class, function (Faker $faker) {
     return [
-        'tag'=>$faker->word
+        'tag'=>$faker->unique()->word
     ];
 });

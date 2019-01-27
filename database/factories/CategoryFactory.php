@@ -5,6 +5,6 @@ use App\Models\Category;
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
-        'category'=>$faker->word
+        'category'=>$faker->unique()->word
     ];
 });

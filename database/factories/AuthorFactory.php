@@ -5,6 +5,6 @@ use App\Models\Author;
 
 $factory->define(Author::class, function (Faker $faker) {
     return [
-        'name' => $faker->name
+        'name' => $faker->unique()->name
     ];
 });
